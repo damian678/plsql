@@ -64,7 +64,7 @@ return z_danestudenta;
 end;
 
 begin 
-dbms_output.put_line(imie_nazwisko(2)); --aby w³¹czyæ: View -> Dbms Output
+dbms_output.put_line(imie_nazwisko(2)); --aby wÅ‚Ä…czyÄ‡: View -> Dbms Output
 end;
 
 select imie_nazwisko(2) from dual;
@@ -95,7 +95,7 @@ nazwa_przedmiotu varchar2(20));
 
 create sequence seq_id_przedmiotu;
 
---Procedura dodaj¹ca przedmiot
+--Procedura dodajÄ…ca przedmiot
 create or replace procedure nowy_przedmiot
 (p_nazwa_przedmiotu varchar2)
 as
@@ -109,7 +109,7 @@ end;
 
 select * from przedmioty;
 
---Procedura zmieniaj¹ca nazwê przedmiotu
+--Procedura zmieniajÄ…ca nazwÄ™ przedmiotu
 create or replace procedure zmiana_nazwy_przedmiotu
 (p_id_przedmiotu number, p_nazwa_przedmiotu varchar2)
 as
@@ -124,7 +124,7 @@ end;
 
 select * from przedmioty;
 
---Procedura usuwaj¹ca przedmiot
+--Procedura usuwajÄ…ca przedmiot
 create or replace procedure usun_przedmiot
 (p_id_przedmiotu in studenci.id_studenta%type)
 as
@@ -138,7 +138,7 @@ end;
 
 select * from przedmioty;
 
---Funkcja zwracaj¹ca ³añcuch z id i nazw¹ przedmiotu
+--Funkcja zwracajÄ…ca Å‚aÅ„cuch z id i nazwÄ… przedmiotu
 create or replace function zwroc_lancuch
 (p_id_przedmiotu number)
 return varchar2 as
@@ -151,12 +151,12 @@ return z_daneprzedmiotu;
 end;
 
 begin 
-dbms_output.put_line(zwroc_lancuch(2)); --aby w³¹czyæ: View -> Dbms Output
+dbms_output.put_line(zwroc_lancuch(2)); --aby wÅ‚Ä…czyÄ‡: View -> Dbms Output
 end;
 
 select zwroc_lancuch(2) from dual;
 
---Funkcja zwracaj¹ca rekord z danymi
+--Funkcja zwracajÄ…ca rekord z danymi
 create or replace function rekord_przedmioty
 (p_id_przedmiotu number)
 return przedmioty%rowtype as wiersz przedmioty%rowtype;
@@ -264,7 +264,7 @@ update oceny set ocena=3 where id_oceny=2;
 select * from oceny;
 select * from ocena_log;
 
---za pomoc¹ predykatów
+--za pomocÄ… predykatÃ³w
 alter table ocena_log add uwaga varchar2(30);
 
 --Trigger
@@ -274,13 +274,13 @@ for each row
 begin
 if inserting then
 insert into ocena_log
-values(seq_ocena_log.nextval,user,:new.id_oceny,:old.ocena,:new.ocena,sysdate,'dodano ocenê');
+values(seq_ocena_log.nextval,user,:new.id_oceny,:old.ocena,:new.ocena,sysdate,'dodano ocenÄ™');
 elsif updating then
 insert into ocena_log
-values(seq_ocena_log.nextval,user,:new.id_oceny,:old.ocena,:new.ocena,sysdate,'zmieniono ocenê');
+values(seq_ocena_log.nextval,user,:new.id_oceny,:old.ocena,:new.ocena,sysdate,'zmieniono ocenÄ™');
 else 
 insert into ocena_log
-values(seq_ocena_log.nextval,user,:old.id_oceny,:old.ocena,:new.ocena,sysdate,'usuniêto ocenê');
+values(seq_ocena_log.nextval,user,:old.id_oceny,:old.ocena,:new.ocena,sysdate,'usuniÄ™to ocenÄ™');
 end if;
 end;
 
